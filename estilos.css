@@ -49,18 +49,16 @@ p {
     margin: 10px auto;
 }
 
-/* 2. CABECERA Y NAVEGACIÓN (Alineada con el contenido de la web) */
+/* 2. CABECERA Y NAVEGACIÓN (Integrada en la caja blanca) */
 .header-nav {
     display: flex;
     justify-content: flex-end; 
     align-items: center;
-    padding: 10px 20px;
-    background: transparent;
+    padding: 15px 0 10px 0;
+    background: #ffffff; /* Fondo blanco para que no se vea el fondo gris al hacer scroll */
     position: sticky;
-    top: 0;
-    z-index: 100;
-    max-width: 1000px; /* Igual que el main-wrapper para que el botón toque "la esquina" del bloque blanco */
-    margin: 0 auto;
+    top: -15px; /* Compensa el padding superior del main-wrapper para quedar arriba del todo */
+    z-index: 1000;
 }
 
 /* Utilidad para centrado total */
