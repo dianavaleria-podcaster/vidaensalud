@@ -146,9 +146,8 @@
         }
 
         .btn-abrir-rgpd {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.8rem;
+            display: inline; /* Cambiado a inline para fluir con el texto */
+            font-size: 13px;
             color: #666;
             text-decoration: underline;
             cursor: pointer;
@@ -157,6 +156,7 @@
             padding: 0;
             font-family: var(--fuente-texto);
             transition: color 0.2s;
+            margin: 0;
         }
 
         .btn-abrir-rgpd:hover {
@@ -227,10 +227,11 @@
         }
 
         .rgpd-mini {
-            font-size: 0.75rem;
-            color: #777;
-            line-height: 1.4;
-            margin-top: 10px;
+            font-size: 13px; /* Tamaño solicitado 13px */
+            color: #555;
+            line-height: 1.5;
+            margin-top: 12px;
+            font-family: var(--fuente-texto); /* Forzar Nunito Sans */
         }
 
         .rgpd-mini a {
@@ -405,8 +406,8 @@
                         </div>
 
                         <div class="rgpd-mini">
-                            Para cumplir con el RGPD, tus datos están protegidos.
-                            <button type="button" class="btn-abrir-rgpd" onclick="abrirRGPD()">Leer política de privacidad y protección de datos.</button>
+                            Cumplimos con la ley de protección de datos y tus datos están protegidos.
+                            <button type="button" class="btn-abrir-rgpd" onclick="abrirRGPD()">Leer política de privacidad.</button>
                         </div>
                     </form>
                 </div>
