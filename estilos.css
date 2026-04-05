@@ -50,17 +50,18 @@ p {
     margin: 20px auto;
 }
 
-/* 2. CABECERA Y NAVEGACIÓN (Línea Fina Superior) */
+/* 2. CABECERA Y NAVEGACIÓN (Línea Fina Centrada) */
 .header-nav {
     display: flex;
-    justify-content: flex-end; /* Botón a la derecha */
+    justify-content: flex-end; 
     align-items: center;
-    padding: 15px 40px;
-    background: #ffffff;
-    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    background: transparent; /* Más ligero */
     position: sticky;
     top: 0;
     z-index: 100;
+    max-width: 180px; /* Al ancho del logo para que el botón "nazca" en su esquina */
+    margin: 0 auto;
 }
 
 /* Utilidad para centrado total */
