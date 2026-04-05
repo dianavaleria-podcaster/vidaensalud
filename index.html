@@ -105,6 +105,139 @@
             }
         }
 
+        /* Estilos del Pop-up RGPD */
+        .modal-rgpd {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            font-family: var(--fuente-texto);
+            color: #333;
+            text-align: left;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-modal:hover {
+            color: var(--rojo);
+        }
+
+        .btn-abrir-rgpd {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: var(--fuente-texto);
+            transition: color 0.2s;
+        }
+
+        .btn-abrir-rgpd:hover {
+            color: var(--verde-salud);
+        }
+
+        /* Formulario Minimalista */
+        #subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #subscribe-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: var(--fuente-texto);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        #subscribe-form .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333; /* Negro grafito */
+            border-radius: 6px;
+            font-family: var(--fuente-texto);
+            font-size: 1rem;
+            box-sizing: border-box;
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+
+        #subscribe-form .form-control:focus {
+            outline: none;
+            border-color: var(--verde-salud);
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+        }
+
+        #subscribe-form .submit-wrapper {
+            margin-top: 10px;
+        }
+
+        #subscribe-form input[type="submit"] {
+            background-color: var(--verde-salud);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-family: var(--fuente-texto);
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        #subscribe-form input[type="submit"]:hover {
+            background-color: #1b5e20;
+            transform: translateY(-1px);
+        }
+
+        #subscribe-form input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .rgpd-mini {
+            font-size: 0.75rem;
+            color: #777;
+            line-height: 1.4;
+            margin-top: 10px;
+        }
+
+        .rgpd-mini a {
+            color: var(--verde-salud);
+            text-decoration: underline;
+        }
+
         /* Estilos del reproductor RSS (Modo Oscuro) */
         .custom-podcast-player {
             max-width: 100%;
@@ -243,10 +376,39 @@
                     dirige a la óptima salud.</p>
 
                 <div class="newsletter-embed">
-                    <iframe data-skip-lazy="" src="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" frameborder="0"
-                        scrolling="no" width="100%" class="ipz-iframe"></iframe>
-                    <script data-cfasync="false" type="text/javascript"
-                        src="https://assets.ipzmarketing.com/assets/signup_form/iframe_v1.js"></script>
+                    <form class="simple_form form form-vertical" id="subscribe-form"
+                        action="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" accept-charset="UTF-8"
+                        method="post">
+
+                        <input type="text" name="anotheremail" id="anotheremail"
+                            style="position: absolute; left: -5000px" tabindex="-1" autocomplete="new-password" />
+
+                        <div class="form-group email">
+                            <label for="subscriber_email">Email</label>
+                            <input class="form-control" type="email" name="subscriber[email]" id="subscriber_email"
+                                placeholder="tu@email.com" required />
+                        </div>
+
+                        <div class="form-group string">
+                            <label for="subscriber_name">Nombre</label>
+                            <input class="form-control" type="text" name="subscriber[name]" id="subscriber_name"
+                                placeholder="Tu nombre" />
+                        </div>
+
+                        <div style="margin: 10px 0;">
+                            <script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
+                            <div data-sitekey="6LfxSlQUAAAAAE2wMx0128AjWWFXJoBkiNQn2m8m" class="g-recaptcha"></div>
+                        </div>
+
+                        <div class="submit-wrapper">
+                            <input type="submit" name="commit" value="Suscribirme" data-disable-with="Procesando..." />
+                        </div>
+
+                        <div class="rgpd-mini">
+                            Para cumplir con el RGPD, tus datos están protegidos.
+                            <button type="button" class="btn-abrir-rgpd" onclick="abrirRGPD()">Leer política de privacidad y protección de datos.</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -262,8 +424,8 @@
 
     <script>
         const rssUrl = "https://anchor.fm/s/10f10dc44/podcast/rss";
-        // Proxy mucho más permisivo para pruebas locales (file://)
-        const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`;
+        // Intentamos petición directa, con backup a allorigins si fallara por CORS en el cliente
+        const backupProxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
         
         const audioEl = document.getElementById('main-audio');
         const listEl = document.getElementById('episodes-list');
@@ -276,15 +438,22 @@
 
         async function fetchRSS() {
             try {
-                // Intentamos con un puente que admite Origin null (archivos locales)
-                let response = await fetch(proxyUrl);
-                if (!response.ok) throw new Error('Proxy falló');
+                // PRIMER INTENTO: Petición Directa (Más rápido y fiable si Anchor lo permite)
+                let response = await fetch(rssUrl);
+                if (!response.ok) throw new Error('Direct fetch falló');
                 
                 const xmlText = await response.text();
                 parseAndInitialize(xmlText);
             } catch (err) {
-                console.error("Error de conexión:", err);
-                listEl.innerHTML = '<p style="padding: 20px; text-align: center;">Error de conexión al cargar episodios. <br><small>Nota técnica: Al visualizar la web directamente desde tu disco duro (local) algunos navegadores bloquean por seguridad la lectura del podcast en vivo. Funciona al alojar la web o usando el proxy actual. Intenta recargar.</small></p>';
+                console.warn("Fallo petición directa, intentando vía proxy AllOrigins...", err);
+                try {
+                    let response = await fetch(backupProxyUrl);
+                    let data = await response.json();
+                    parseAndInitialize(data.contents);
+                } catch (err2) {
+                    console.error("Fallo total al cargar el RSS:", err2);
+                    listEl.innerHTML = '<p style="padding: 20px; text-align: center;">Error de conexión crítico al cargar episodios.</p>';
+                }
             }
         }
 
@@ -386,7 +555,43 @@
 
         // Start engine
         fetchRSS();
-    </script>
-</body>
 
+        // Lógica del Pop-up RGPD
+        function abrirRGPD() {
+            document.getElementById('modalRGPD').style.display = 'block';
+        }
+
+        function cerrarRGPD() {
+            document.getElementById('modalRGPD').style.display = 'none';
+        }
+
+        // Cerrar si hace click fuera de la caja blanca
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalRGPD');
+            if (event.target == modal) {
+                cerrarRGPD();
+            }
+        }
+    </script>
+
+    <!-- Modal RGPD -->
+    <div id="modalRGPD" class="modal-rgpd">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarRGPD()">&times;</span>
+            <h2 style="color: var(--verde-salud); text-align: center;">Protección de Datos Personales</h2>
+            <div style="font-size: 0.95rem; line-height: 1.6; margin-top: 20px; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <p>En cumplimiento con la normativa vigente (RGPD), te informamos de que los datos recogidos en este formulario serán tratados por <strong>Vida en Salud</strong> con la finalidad de enviarte nuestra newsletter con contenidos sobre bienestar y salud.</p>
+                <p><strong>Responsable:</strong> Diana Valeria.<br>
+                <strong>Finalidad:</strong> Gestión de envío de información solicitada.<br>
+                <strong>Legitimación:</strong> Tu consentimiento expreso.<br>
+                <strong>Destinatarios:</strong> Plataforma de email marketing IPZ Marketing / Mail Relay.<br>
+                <strong>Derechos:</strong> Puedes acceder, rectificar o suprimir tus datos en cualquier momento enviando un correo a tu dirección de contacto.</p>
+                <p>Tus datos se conservarán mientras exista un interés mutuo para mantener el fin del tratamiento o hasta que solicites su supresión.</p>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn-rojo" onclick="cerrarRGPD()">Entendido</button>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
