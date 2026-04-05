@@ -41,26 +41,25 @@ p {
     color: #000000;
 }
 
-/* 1. EL LOGO (Arreglado para que no sea gigante) */
+/* 1. EL LOGO (Compacto para ahorrar espacio) */
 .logo {
-    max-width: 180px;
-    /* Tamaño controlado */
+    max-width: 130px; /* Reducido de 180px */
     height: auto;
     display: block;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
-/* 2. CABECERA Y NAVEGACIÓN (Línea Fina Centrada) */
+/* 2. CABECERA Y NAVEGACIÓN (Alineada con el contenido de la web) */
 .header-nav {
     display: flex;
     justify-content: flex-end; 
     align-items: center;
-    padding: 10px 0;
-    background: transparent; /* Más ligero */
+    padding: 10px 20px;
+    background: transparent;
     position: sticky;
     top: 0;
     z-index: 100;
-    max-width: 180px; /* Al ancho del logo para que el botón "nazca" en su esquina */
+    max-width: 1000px; /* Igual que el main-wrapper para que el botón toque "la esquina" del bloque blanco */
     margin: 0 auto;
 }
 

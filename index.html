@@ -16,133 +16,32 @@
             max-width: 1000px;
             margin: 0 auto;
             background: #ffffff;
-            padding: 30px;
+            padding: 15px 30px; /* Reducido padding superior/inferior */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        /* Dos columnas: Logo/Títulos a la izquierda, Newsletter a la derecha */
-        .hero-section {
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
-            /* Achicamos un poco el hueco "obligatorio" del medio */
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-
-        .left-col {
-            flex: 1;
-            /* Le damos menos peso relativo */
-            padding-left: 20px;
-            /* Ese margen a la izquierda para que respire y se equilibre */
-        }
-
-        .right-col {
-            flex: 1.6;
-            /* Hacemos que la columna del formulario ocupe mucho más espacio */
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-        }
-
-        .logo {
-            max-width: 180px;
-            height: auto;
-            margin: 0 0 20px 0;
-            /* Lo alineamos a la izquierda quitando el auto */
-            display: block;
-        }
-
         h1 {
-            margin: 0;
-            font-size: 2.2rem;
+            margin: 10px 0 0 0;
+            font-size: 2.1rem;
             line-height: 1.1;
         }
 
         .subtitle {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 500;
             color: #000000;
-            margin-top: 10px;
+            margin-top: 5px; /* Más pegado al H1 */
             line-height: 1.2;
             font-family: var(--fuente-texto);
         }
 
-        /* El Podcast debajo y centrado */
-        .podcast-section {
-            margin-top: 20px;
-            border-top: 1px solid #eee;
-            padding-top: 30px;
+        /* Utilidad para el centrado */
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-        }
-
-        .spotify-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Contenedor del nuevo formulario */
-        .newsletter-embed {
-            margin-top: 20px;
-        }
-
-        /* MAGIA PARA MÓVIL */
-        @media (max-width: 768px) {
-            .hero-section {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .right-col {
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .logo {
-                margin: 0 auto 20px auto;
-                display: block;
-            }
-        }
-
-        /* Estilos del Pop-up RGPD */
-        .modal-rgpd {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(3px);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 600px;
-            position: relative;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            font-family: var(--fuente-texto);
-            color: #333;
-            text-align: left;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #aaa;
-        }
-
-        .close-modal:hover {
-            color: var(--rojo);
         }
 
         .rgpd-mini a {
