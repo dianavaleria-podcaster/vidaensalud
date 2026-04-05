@@ -145,125 +145,41 @@
             color: var(--rojo);
         }
 
-        .btn-abrir-rgpd {
-            display: inline; /* Cambiado a inline para fluir con el texto */
-            font-size: 13px;
-            color: #666;
-            text-decoration: underline;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            font-family: var(--fuente-texto);
-            transition: color 0.2s;
-            margin: 0;
-        }
-
-        .btn-abrir-rgpd:hover {
-            color: var(--verde-salud);
-        }
-
-        /* Formulario Minimalista */
-        #subscribe-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        #subscribe-form label {
-            display: block;
-            margin-bottom: 5px;
-            font-family: var(--fuente-texto);
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: #444;
-        }
-
-        #subscribe-form .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #333; /* Negro grafito */
-            border-radius: 6px;
-            font-family: var(--fuente-texto);
-            font-size: 1rem;
-            box-sizing: border-box;
-            background: #fff;
-            transition: border-color 0.2s;
-        }
-
-        #subscribe-form .form-control:focus {
-            outline: none;
-            border-color: var(--verde-salud);
-            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
-        }
-
-        #subscribe-form .submit-wrapper {
-            margin-top: 10px;
-        }
-
-        #subscribe-form input[type="submit"] {
-            background-color: var(--verde-salud);
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-family: var(--fuente-texto);
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s, transform 0.1s;
-        }
-
-        #subscribe-form input[type="submit"]:hover {
-            background-color: #1b5e20;
-            transform: translateY(-1px);
-        }
-
-        #subscribe-form input[type="submit"]:active {
-            transform: translateY(0);
-        }
-
-        .rgpd-mini {
-            font-size: 13px; /* Tamaño solicitado 13px */
-            color: #555;
-            line-height: 1.5;
-            margin-top: 12px;
-            font-family: var(--fuente-texto); /* Forzar Nunito Sans */
-        }
-
         .rgpd-mini a {
             color: var(--verde-salud);
             text-decoration: underline;
         }
 
-        /* Estilos del reproductor RSS (Modo Oscuro) */
+        /* Reutilizamos el contenedor de podcast que ya tenías en estilos.css pero lo ajustamos */
         .custom-podcast-player {
-            max-width: 100%;
-            margin: 30px 0 0 0;
+            width: 100%;
+            max-width: 700px;
             background: #121212;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             overflow: hidden;
-            border: none;
+            margin: 20px 0;
+            border: 1px solid #282828;
         }
 
         .player-header {
             background: #000000;
-            padding: 20px;
+            padding: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .player-header audio {
             width: 100%;
-            outline: none;
+            height: 45px;
         }
 
         .catalogo-episodios {
-            margin-top: 40px;
+            margin-top: 50px;
             padding-top: 40px;
-            border-top: 2px solid #eee;
+            border-top: 1px solid #eee;
+            width: 100%;
         }
 
         .catalogo-episodios h2 {
