@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+
+/* ==========================================
+   ESTILOS FUSIONADOS - DIANA VALERIA
+   ========================================== */
+
+:root {
+    --rojo: #d31245;
+    /* Ajusta este valor al rojo exacto de tu marca */
+    --fuente-texto: 'Nunito Sans', sans-serif;
+    --fuente-titulos: 'Texturina', serif;
+    --verde-salud: #2e7d32;
+}
+
+body {
+    background-color: #f1f5f1;
+}
+
+h1 {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: var(--verde-salud);
+}
+
+h2 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    color: var(--rojo);
+}
+
+h3 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    color: #000000;
+}
+
+p {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 17px;
+    color: #000000;
+}
+
+/* 1. EL LOGO (Arreglado para que no sea gigante) */
+.logo {
+    max-width: 180px;
+    /* Tamaño controlado */
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+/* 2. CABECERA Y NAVEGACIÓN (Tu código) */
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-rojo {
+    background-color: var(--rojo);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: var(--fuente-texto);
+    transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-rojo:hover {
+    transform: scale(1.05);
+    background-color: #b01036;
+}
+
+/* 3. EL REPRODUCTOR DE SPOTIFY (Para que se vea sí o sí) */
+.podcast-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    /* Fondo gris pálido por si tarda en cargar */
+    min-height: 352px;
+}
+
+/* 4. EL PIE Y EL FORMULARIO (Fusión de ambos) */
+footer {
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #f4f4f4;
+    border-top: 4px solid var(--rojo);
+    text-align: center;
+}
+
+.newsletter-form {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Tuning anti-tablas de Mailrelay */
+.newsletter-form form table,
+.newsletter-form form tr,
+.newsletter-form form td {
+    display: block !important;
+    width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.newsletter-form input {
+    padding: 12px;
+    width: 90%;
+    /* Ajustado para móviles */
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-family: var(--fuente-texto);
+}
+
+/* Reutilizamos tu btn-rojo para el botón del formulario de Mailrelay */
+.newsletter-form button,
+.newsletter-form input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    /* Aquí heredará los estilos de .btn-rojo si le pones la clase */
+}
+
+/* 5. EL PODCAST (Para Vida en Salud) */
+.podcast-title {
+    font-family: var(--fuente-texto);
+    text-align: center;
+    margin-top: 40px;
+    color: #333;
+}

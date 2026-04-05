@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida En Salud</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Mantenemos solo el layout específico de esta página */
+        body {
+            padding: 20px;
+        }
+
+        .main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dos columnas: Logo/Títulos a la izquierda, Newsletter a la derecha */
+        .hero-section {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            /* Achicamos un poco el hueco "obligatorio" del medio */
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .left-col {
+            flex: 1;
+            /* Le damos menos peso relativo */
+            padding-left: 20px;
+            /* Ese margen a la izquierda para que respire y se equilibre */
+        }
+
+        .right-col {
+            flex: 1.6;
+            /* Hacemos que la columna del formulario ocupe mucho más espacio */
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin: 0 0 20px 0;
+            /* Lo alineamos a la izquierda quitando el auto */
+            display: block;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #000000;
+            margin-top: 10px;
+            line-height: 1.2;
+            font-family: var(--fuente-texto);
+        }
+
+        /* El Podcast debajo y centrado */
+        .podcast-section {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .spotify-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor del nuevo formulario */
+        .newsletter-embed {
+            margin-top: 20px;
+        }
+
+        /* MAGIA PARA MÓVIL */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .right-col {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .logo {
+                margin: 0 auto 20px auto;
+                display: block;
+            }
+        }
+
+        /* Estilos del reproductor RSS (Modo Oscuro) */
+        .custom-podcast-player {
+            max-width: 100%;
+            margin: 30px 0 0 0;
+            background: #121212;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border: none;
+        }
+
+        .player-header {
+            background: #000000;
+            padding: 20px;
+        }
+
+        .player-header audio {
+            width: 100%;
+            outline: none;
+        }
+
+        .catalogo-episodios {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #eee;
+        }
+
+        .catalogo-episodios h2 {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .episodes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .episodes-list li {
+            padding: 15px;
+            background: #121212;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #282828;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .episodes-list li:hover {
+            background: #2a2a2a;
+            transform: translateY(-3px);
+        }
+
+        .episodes-list li.playing {
+            background: #1a1a1a;
+            border: 1px solid var(--verde-salud);
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.4);
+        }
+
+        .episode-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px; /* Las portadas de Spotify son levemente cuadradas */
+            object-fit: cover;
+        }
+
+        .episode-info {
+            flex: 1;
+        }
+
+        .episode-title {
+            font-family: var(--fuente-texto);
+            font-weight: bold;
+            color: #ffffff; /* Texto claro Spotify */
+            margin: 0 0 5px 0;
+            font-size: 0.95rem;
+            line-height: 1.3;
+        }
+
+        .episode-date {
+            font-family: var(--fuente-texto);
+            font-size: 0.8rem;
+            color: #b3b3b3; /* Gris claro Spotify */
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .right-col {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .logo {
+                margin: 0 auto 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <div class="hero-section">
+
+            <div class="left-col">
+                <img src="logo.jpg" alt="Vida En Salud" class="logo">
+                <h1>Vida En Salud Podcast</h1>
+                <div class="subtitle">Empodérate y<br>autogestiona tu salud</div>
+                
+                <div class="podcast-section" style="border-top: none; padding-top: 0; text-align: left;">
+                    <div id="custom-podcast-player" class="custom-podcast-player">
+                        <div class="player-header">
+                            <audio id="main-audio" controls>
+                                Tu navegador no soporta el elemento de audio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <p style="margin-top: 0; font-weight: 500;">Tengo una newsletter. Aprendizaje profundo, mails breves,
+                    cargados de valor humano, que llegan a tu bandeja de entrada, con el propósito de ser un punto de
+                    apoyo a tu esfuerzo por mantener la atención enfocada en el bienestar profundo que, como sabes, te
+                    dirige a la óptima salud.</p>
+
+                <div class="newsletter-embed">
+                    <iframe data-skip-lazy="" src="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" frameborder="0"
+                        scrolling="no" width="100%" class="ipz-iframe"></iframe>
+                    <script data-cfasync="false" type="text/javascript"
+                        src="https://assets.ipzmarketing.com/assets/signup_form/iframe_v1.js"></script>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="catalogo-episodios">
+            <h2>Todos los episodios</h2>
+            <ul id="episodes-list" class="episodes-list">
+                <p style="padding: 20px; text-align: center; color: #b3b3b3; grid-column: 1 / -1;">Cargando episodios...</p>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const rssUrl = "https://anchor.fm/s/10f10dc44/podcast/rss";
+        // Proxy mucho más permisivo para pruebas locales (file://)
+        const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`;
+        
+        const audioEl = document.getElementById('main-audio');
+        const listEl = document.getElementById('episodes-list');
+        
+        let allEpisodes = [];
+        let currentIndex = 0;
+        const CHUNK_SIZE = 12;
+        let globalImage = "logo.jpg";
+        let isFetching = false;
+
+        async function fetchRSS() {
+            try {
+                // Intentamos con un puente que admite Origin null (archivos locales)
+                let response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error('Proxy falló');
+                
+                const xmlText = await response.text();
+                parseAndInitialize(xmlText);
+            } catch (err) {
+                console.error("Error de conexión:", err);
+                listEl.innerHTML = '<p style="padding: 20px; text-align: center;">Error de conexión al cargar episodios. <br><small>Nota técnica: Al visualizar la web directamente desde tu disco duro (local) algunos navegadores bloquean por seguridad la lectura del podcast en vivo. Funciona al alojar la web o usando el proxy actual. Intenta recargar.</small></p>';
+            }
+        }
+
+        // Parseador del XML Crudo (el bueno, que nos da todos)
+        function parseAndInitialize(xmlString) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            const items = xmlDoc.querySelectorAll("item");
+            
+            if(items.length > 0) {
+                const globalImageEl = xmlDoc.querySelector("channel > image > url");
+                if (globalImageEl) globalImage = globalImageEl.textContent;
+                
+                // Guardar todos en memoria en lugar de dibujarlos
+                allEpisodes = Array.from(items);
+                listEl.innerHTML = '';
+                
+                // Inicializar primera carga de N episodios
+                renderNextChunk();
+                
+                // Poner el primer episodio a la espera de reproducción
+                const firstEnclosure = allEpisodes[0].querySelector("enclosure");
+                if (firstEnclosure) {
+                    audioEl.src = firstEnclosure.getAttribute("url");
+                }
+                
+                // Setup Scroll Listener global
+                window.addEventListener('scroll', handleScroll);
+            } else {
+                listEl.innerHTML = '<p style="padding: 20px; text-align: center;">No se pudieron cargar los episodios (feed vacío).</p>';
+            }
+        }
+
+        function renderNextChunk() {
+            if (currentIndex >= allEpisodes.length) return; // Ya no hay más
+
+            const endIndex = Math.min(currentIndex + CHUNK_SIZE, allEpisodes.length);
+            const fragment = document.createDocumentFragment();
+
+            for (let i = currentIndex; i < endIndex; i++) {
+                const item = allEpisodes[i];
+                const li = document.createElement('li');
+                
+                const title = item.querySelector("title")?.textContent || "Episodio sin título";
+                
+                let thumb = globalImage;
+                const itunesImage = item.getElementsByTagNameNS("*", "image");
+                if(itunesImage.length > 0 && itunesImage[0].getAttribute("href")) {
+                    thumb = itunesImage[0].getAttribute("href");
+                }
+                
+                const pubDateText = item.querySelector("pubDate")?.textContent;
+                const dateStr = pubDateText ? new Date(pubDateText).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' }) : "";
+                
+                const enclosure = item.querySelector("enclosure");
+                const audioLink = enclosure ? enclosure.getAttribute("url") : "";
+                
+                li.innerHTML = `
+                    <img src="${thumb}" alt="Cover" class="episode-thumb">
+                    <div class="episode-info">
+                        <p class="episode-title">${title}</p>
+                        <p class="episode-date">${dateStr}</p>
+                    </div>
+                `;
+                
+                if(audioLink) {
+                    li.addEventListener('click', () => {
+                        audioEl.src = audioLink;
+                        audioEl.play().catch(e => console.log("Navegador bloqueó autoplay", e));
+                        
+                        document.querySelectorAll('.episodes-list li').forEach(el => el.classList.remove('playing'));
+                        li.classList.add('playing');
+                    });
+                }
+                
+                // Marcar primero como activo si es el arranque absoluto
+                if (i === 0 && audioLink) {
+                    li.classList.add('playing');
+                }
+
+                fragment.appendChild(li);
+            }
+
+            listEl.appendChild(fragment);
+            currentIndex = endIndex;
+            isFetching = false;
+        }
+
+        function handleScroll() {
+            // Evaluamos si el usuario se acerca al fondo de la página
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            if (scrollTop + clientHeight >= scrollHeight - 300) {
+                if (!isFetching && currentIndex < allEpisodes.length) {
+                    isFetching = true;
+                    setTimeout(() => renderNextChunk(), 100); 
+                }
+            }
+        }
+
+        // Start engine
+        fetchRSS();
+    </script>
+</body>
+
+</html>

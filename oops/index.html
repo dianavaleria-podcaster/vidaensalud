@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ooooops! - Vida en Salud</title>
+    <link rel="stylesheet" href="../estilos.css">
+
+    <style>
+        body {
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .contenedor-error {
+            background-color: #ffffff;
+            max-width: 520px;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .btn-ampliado {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 15px 30px;
+        }
+
+        .contacto-pie {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.95em;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .contenedor-error {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor-error">
+        <h1>Ooooops!</h1>
+
+        <h2>Algo ha ido regular aquí.</h2>
+
+        <p>El formulario no ha sido enviado.</p>
+
+        <h3>¿Qué hacer ahora?</h3>
+
+        <p>Vuelve a la página principal y rellena el formulario de nuevo. Asegúrate de poner bien tu correo y tu nombre.
+        </p>
+
+        <a href="/" class="btn-rojo btn-ampliado">Volver a la página principal</a>
+
+        <div class="contacto-pie">
+            <p>Si igualmente seguimos teniendo error, escríbeme a <strong>dianavaleria@vidaensalud.es</strong> y lo
+                resolvemos en equipo, tú y yo.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
