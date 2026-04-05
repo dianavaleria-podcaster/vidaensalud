@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suscripción - Vida En Salud</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <style>
+        body {
+            padding: 40px 20px;
+        }
+
+        .subscription-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #666;
+            text-decoration: none;
+            font-family: var(--fuente-texto);
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--verde-salud);
+        }
+
+        .subscription-header h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .subscription-info {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Reutilizamos los estilos del formulario */
+        #subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #subscribe-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: var(--fuente-texto);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        #subscribe-form .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-family: var(--fuente-texto);
+            font-size: 1rem;
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        #subscribe-form input[type="submit"] {
+            background-color: var(--verde-salud);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: var(--fuente-texto);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .rgpd-mini {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 20px;
+            font-family: var(--fuente-texto);
+            text-align: center;
+        }
+
+        .btn-abrir-rgpd {
+            display: inline;
+            font-size: 13px;
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: var(--fuente-texto);
+        }
+
+        /* Modal RGPD (mismo estilo) */
+        .modal-rgpd {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            font-family: var(--fuente-texto);
+            color: #333;
+            text-align: left;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="subscription-wrapper">
+        <a href="../index.html" class="back-link">← Volver al podcast</a>
+        
+        <div class="subscription-header">
+            <h1>Únete a nuestra comunidad</h1>
+            <div class="subscription-info">
+                <p>Aprendizaje profundo, mails breves, cargados de valor humano. Un punto de apoyo para mantener tu atención enfocada en el bienestar que te dirige a la óptima salud.</p>
+            </div>
+        </div>
+
+        <form id="subscribe-form" action="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" method="post">
+            <input type="text" name="anotheremail" style="position: absolute; left: -5000px" tabindex="-1" autocomplete="new-password" />
+            
+            <div class="form-group">
+                <label for="subscriber_email">Tu mejor Email</label>
+                <input class="form-control" type="email" name="subscriber[email]" id="subscriber_email" placeholder="tu@email.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="subscriber_name">¿Cómo te llamas?</label>
+                <input class="form-control" type="text" name="subscriber[name]" id="subscriber_name" placeholder="Tu nombre" />
+            </div>
+
+            <div style="margin: 15px 0 5px 0; display: flex; justify-content: center;">
+                <script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
+                <div data-sitekey="6LfxSlQUAAAAAE2wMx0128AjWWFXJoBkiNQn2m8m" class="g-recaptcha"></div>
+            </div>
+
+            <input type="submit" value="¡Quiero suscribirme!" />
+
+            <div class="rgpd-mini">
+                Cumplimos con la ley de protección de datos y tus datos están protegidos.<br>
+                <button type="button" class="btn-abrir-rgpd" onclick="abrirRGPD()">Leer política de privacidad.</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal RGPD -->
+    <div id="modalRGPD" class="modal-rgpd">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarRGPD()">&times;</span>
+            <h2 style="color: var(--verde-salud); text-align: center;">Protección de Datos</h2>
+            <div style="font-size: 0.95rem; line-height: 1.6; margin-top: 20px;">
+                <p>Responsable: Diana Valeria. Finalidad: Envío de newsletter. Destinatarios: Mailrelay. Tienes derecho a acceder, rectificar y suprimir tus datos.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirRGPD() { document.getElementById('modalRGPD').style.display = 'block'; }
+        function cerrarRGPD() { document.getElementById('modalRGPD').style.display = 'none'; }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modalRGPD')) cerrarRGPD();
+        }
+    </script>
+</body>
+
+</html>

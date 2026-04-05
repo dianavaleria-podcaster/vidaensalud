@@ -351,69 +351,25 @@
 
 <body>
 
+    <nav class="header-nav">
+        <a href="suscripcion/index.html" class="btn-rojo">Suscríbete</a>
+    </nav>
+
     <div class="main-wrapper">
-        <div class="hero-section">
+        <div class="centered-content">
+            <img src="logo.jpg" alt="Vida En Salud" class="logo">
+            <h1>Vida En Salud Podcast</h1>
+            <div class="subtitle" style="margin-bottom: 30px;">Empodérate y<br>autogestiona tu salud</div>
 
-            <div class="left-col">
-                <img src="logo.jpg" alt="Vida En Salud" class="logo">
-                <h1>Vida En Salud Podcast</h1>
-                <div class="subtitle">Empodérate y<br>autogestiona tu salud</div>
-                
-                <div class="podcast-section" style="border-top: none; padding-top: 0; text-align: left;">
-                    <div id="custom-podcast-player" class="custom-podcast-player">
-                        <div class="player-header">
-                            <audio id="main-audio" controls>
-                                Tu navegador no soporta el elemento de audio.
-                            </audio>
-                        </div>
-                    </div>
+            <div id="custom-podcast-player" class="custom-podcast-player" style="margin-bottom: 20px;">
+                <div class="player-header">
+                    <audio id="main-audio" controls>
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
                 </div>
             </div>
-
-            <div class="right-col">
-                <p style="margin-top: 0; font-weight: 500;">Tengo una newsletter. Aprendizaje profundo, mails breves,
-                    cargados de valor humano, que llegan a tu bandeja de entrada, con el propósito de ser un punto de
-                    apoyo a tu esfuerzo por mantener la atención enfocada en el bienestar profundo que, como sabes, te
-                    dirige a la óptima salud.</p>
-
-                <div class="newsletter-embed">
-                    <form class="simple_form form form-vertical" id="subscribe-form"
-                        action="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" accept-charset="UTF-8"
-                        method="post">
-
-                        <input type="text" name="anotheremail" id="anotheremail"
-                            style="position: absolute; left: -5000px" tabindex="-1" autocomplete="new-password" />
-
-                        <div class="form-group email">
-                            <label for="subscriber_email">Email</label>
-                            <input class="form-control" type="email" name="subscriber[email]" id="subscriber_email"
-                                placeholder="tu@email.com" required />
-                        </div>
-
-                        <div class="form-group string">
-                            <label for="subscriber_name">Nombre</label>
-                            <input class="form-control" type="text" name="subscriber[name]" id="subscriber_name"
-                                placeholder="Tu nombre" />
-                        </div>
-
-                        <div style="margin: 10px 0;">
-                            <script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
-                            <div data-sitekey="6LfxSlQUAAAAAE2wMx0128AjWWFXJoBkiNQn2m8m" class="g-recaptcha"></div>
-                        </div>
-
-                        <div class="submit-wrapper">
-                            <input type="submit" name="commit" value="Suscribirme" data-disable-with="Procesando..." />
-                        </div>
-
-                        <div class="rgpd-mini">
-                            Cumplimos con la ley de protección de datos y tus datos están protegidos.
-                            <button type="button" class="btn-abrir-rgpd" onclick="abrirRGPD()">Leer política de privacidad.</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
         </div>
+
 
         <div class="catalogo-episodios">
             <h2>Todos los episodios</h2>
@@ -556,43 +512,6 @@
 
         // Start engine
         fetchRSS();
-
-        // Lógica del Pop-up RGPD
-        function abrirRGPD() {
-            document.getElementById('modalRGPD').style.display = 'block';
-        }
-
-        function cerrarRGPD() {
-            document.getElementById('modalRGPD').style.display = 'none';
-        }
-
-        // Cerrar si hace click fuera de la caja blanca
-        window.onclick = function(event) {
-            const modal = document.getElementById('modalRGPD');
-            if (event.target == modal) {
-                cerrarRGPD();
-            }
-        }
     </script>
-
-    <!-- Modal RGPD -->
-    <div id="modalRGPD" class="modal-rgpd">
-        <div class="modal-content">
-            <span class="close-modal" onclick="cerrarRGPD()">&times;</span>
-            <h2 style="color: var(--verde-salud); text-align: center;">Protección de Datos Personales</h2>
-            <div style="font-size: 0.95rem; line-height: 1.6; margin-top: 20px; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
-                <p>En cumplimiento con la normativa vigente (RGPD), te informamos de que los datos recogidos en este formulario serán tratados por <strong>Vida en Salud</strong> con la finalidad de enviarte nuestra newsletter con contenidos sobre bienestar y salud.</p>
-                <p><strong>Responsable:</strong> Diana Valeria.<br>
-                <strong>Finalidad:</strong> Gestión de envío de información solicitada.<br>
-                <strong>Legitimación:</strong> Tu consentimiento expreso.<br>
-                <strong>Destinatarios:</strong> Plataforma de email marketing IPZ Marketing / Mail Relay.<br>
-                <strong>Derechos:</strong> Puedes acceder, rectificar o suprimir tus datos en cualquier momento enviando un correo a tu dirección de contacto.</p>
-                <p>Tus datos se conservarán mientras exista un interés mutuo para mantener el fin del tratamiento o hasta que solicites su supresión.</p>
-            </div>
-            <div style="text-align: center; margin-top: 25px;">
-                <button class="btn-rojo" onclick="cerrarRGPD()">Entendido</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

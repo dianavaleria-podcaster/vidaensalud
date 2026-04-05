@@ -50,13 +50,32 @@ p {
     margin: 20px auto;
 }
 
-/* 2. CABECERA Y NAVEGACIÓN (Tu código) */
+/* 2. CABECERA Y NAVEGACIÓN (Línea Fina Superior) */
 .header-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Botón a la derecha */
     align-items: center;
-    padding: 10px 0;
+    padding: 15px 40px;
+    background: #ffffff;
     border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Utilidad para centrado total */
+.text-center {
+    text-align: center;
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .btn-rojo {
