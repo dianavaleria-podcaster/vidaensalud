@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vida En Salud</title>
     <link rel="stylesheet" href="estilos.css">
+    
+    <!-- SEO & Social Media -->
+    <link rel="canonical" href="https://vidaensalud.es/index.html">
+    <meta name="description" content="Podcast Vida En Salud - Empodérate y autogestiona tu salud con Diana Valeria.">
+    <meta property="og:title" content="Vida En Salud - Podcast">
+    <meta property="og:description" content="Empodérate y autogestiona tu salud con nuestro podcast educativo y profesional.">
+    <meta property="og:image" content="https://vidaensalud.es/logo.jpg">
+    <meta property="og:url" content="https://vidaensalud.es/index.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
         /* Mantenemos solo el layout específico de esta página */
         body {
@@ -290,13 +300,8 @@
                 const enclosure = item.querySelector("enclosure");
                 const audioLink = enclosure ? enclosure.getAttribute("url") : "";
 
-                function slugify(text) {
-                    return text.toString().toLowerCase()
-                        .replace(/[^a-z0-9]+/g, '-')
-                        .replace(/^-+/, '')
-                        .replace(/-+$/, '');
-                }
-                const slug = slugify(title);
+                const episodeNumber = allEpisodes.length - i;
+                const slug = episodeNumber.toString();
 
                 li.innerHTML = `
                     <img src="${thumb}" alt="Cover" class="episode-thumb">
@@ -304,8 +309,8 @@
                         <p class="episode-title">${title}</p>
                         <p class="episode-date">
                             ${dateStr} • 
-                            <span class="play-link" style="color: #ccff00; cursor: pointer; font-weight: bold;">Escuchar</span> • 
-                            <a href="episodios/${slug}.html" style="color: #ccff00; text-decoration: none; font-weight: bold;">Ver detalles</a>
+                            <span class="play-link" style="color: #ccff00; cursor: pointer; font-weight: bold;">Play</span> • 
+                            <a href="podcast/${slug}.html" style="color: #ccff00; text-decoration: none; font-weight: bold;">Leer</a>
                         </p>
                     </div>
                 `;

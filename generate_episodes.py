@@ -6,7 +6,7 @@ import os
 import html
 
 rss_url = "https://anchor.fm/s/10f10dc44/podcast/rss"
-output_dir = "episodios"
+output_dir = "podcast"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
@@ -23,6 +23,19 @@ def clean_description(desc):
     desc = re.sub(pattern, '', desc)
     desc = desc.replace('Ve a escucharlo el episodio en este enlace', '')
     return desc
+
+def get_short_description(html_content, length=160):
+    if not html_content: return ""
+    # Clean HTML tags
+    text = re.sub(r'<[^>]+>', '', html_content)
+    # Decode HTML entities
+    text = html.unescape(text)
+    # Remove extra whitespaces
+    text = ' '.join(text.split())
+    # Truncate
+    if len(text) > length:
+        return text[:length].rsplit(' ', 1)[0] + "..."
+    return text
 
 def get_episodes():
     req = urllib.request.Request(rss_url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -43,7 +56,7 @@ def get_episodes():
     if global_image_el is not None:
         global_image = global_image_el.text
 
-    for item in items:
+    for i, item in enumerate(items):
         title_el = item.find('title')
         title = title_el.text if title_el is not None and title_el.text else "Episodio sin título"
         
@@ -71,7 +84,8 @@ def get_episodes():
         if itunes_image is not None:
             image = itunes_image.get('href')
             
-        slug = slugify(title)
+        episode_number = len(items) - i
+        slug = str(episode_number)
         
         # Format date
         try:
@@ -106,6 +120,16 @@ template = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} - Vida En Salud</title>
     <link rel="stylesheet" href="../estilos.css">
+    
+    <!-- SEO & Social Media -->
+    <link rel="canonical" href="https://vidaensalud.es/podcast/{slug}.html">
+    <meta name="description" content="{short_description}">
+    <meta property="og:title" content="{title} - Vida En Salud">
+    <meta property="og:description" content="{short_description}">
+    <meta property="og:image" content="{image}">
+    <meta property="og:url" content="https://vidaensalud.es/podcast/{slug}.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
         body {{ padding: 20px; }}
         .main-wrapper {{
@@ -292,6 +316,8 @@ for i, ep in enumerate(episodes):
         pubDate=ep['pubDate'],
         audioUrl=ep['audioUrl'],
         description=ep['description'],
+        short_description=get_short_description(ep['description']),
+        slug=ep['slug'],
         prev_link=prev_link,
         next_link=next_link,
         spotifyLink=ep['spotifyLink']
@@ -299,4 +325,25 @@ for i, ep in enumerate(episodes):
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(content)
 
-print("Done!")
+# Generate Sitemap
+sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://vidaensalud.es/index.html</loc>
+        <priority>1.0</priority>
+    </url>
+"""
+
+for ep in episodes:
+    sitemap_content += f"""    <url>
+        <loc>https://vidaensalud.es/podcast/{ep['slug']}.html</loc>
+        <priority>0.8</priority>
+    </url>
+"""
+
+sitemap_content += "</urlset>"
+
+with open("sitemap.xml", "w", encoding="utf-8") as f:
+    f.write(sitemap_content)
+
+print("Done! Sitemap generated.")

@@ -1,0 +1,17 @@
+# 301 Redirects - Vida En Salud
+RewriteEngine On
+
+# Ejemplo de redirección de una URL antigua a la nueva estructura numérica
+# Redirect 301 /nombre-del-episodio-antiguo https://vidaensalud.es/podcast/169.html
+
+# Redirigir el antiguo feed si fuera necesario
+# Redirect 301 /feed/podcast https://anchor.fm/s/10f10dc44/podcast/rss
+
+# Redirigir la antigua carpeta 'episodios' a 'podcast' (por si alguien guardó el link hace 5 minutos)
+RewriteRule ^episodios/(.*)$ /podcast/$1 [R=301,L]
+
+# Configuración básica para URLs amigables (opcional)
+# Si quieres que /podcast/169 funcione sin el .html, descomenta las siguientes líneas:
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}\.html -f
+# RewriteRule ^podcast/([0-9]+)$ /podcast/$1.html [L]
