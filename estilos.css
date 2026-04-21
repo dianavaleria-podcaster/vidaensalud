@@ -43,7 +43,8 @@ p {
 
 /* 1. EL LOGO (Compacto para ahorrar espacio) */
 .logo {
-    max-width: 130px; /* Reducido de 180px */
+    max-width: 130px;
+    /* Reducido de 180px */
     height: auto;
     display: block;
     margin: 10px auto;
@@ -52,12 +53,14 @@ p {
 /* 2. CABECERA Y NAVEGACIÓN (Integrada en la caja blanca) */
 .header-nav {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     align-items: center;
     padding: 15px 0 10px 0;
-    background: #ffffff; /* Fondo blanco para que no se vea el fondo gris al hacer scroll */
+    background: #ffffff;
+    /* Fondo blanco para que no se vea el fondo gris al hacer scroll */
     position: sticky;
-    top: -15px; /* Compensa el padding superior del main-wrapper para quedar arriba del todo */
+    top: -15px;
+    /* Compensa el padding superior del main-wrapper para quedar arriba del todo */
     z-index: 1000;
 }
 

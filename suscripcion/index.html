@@ -118,7 +118,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(3px);
         }
 
@@ -129,7 +129,7 @@
             border-radius: 12px;
             max-width: 600px;
             position: relative;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
             font-family: var(--fuente-texto);
             color: #333;
             text-align: left;
@@ -150,25 +150,29 @@
 <body>
     <div class="subscription-wrapper">
         <a href="../index.html" class="back-link">← Volver al podcast</a>
-        
+
         <div class="subscription-header">
             <h1>Únete a nuestra comunidad</h1>
             <div class="subscription-info">
-                <p>Aprendizaje profundo, mails breves, cargados de valor humano. Un punto de apoyo para mantener tu atención enfocada en el bienestar que te dirige a la óptima salud.</p>
+                <p>Aprendizaje profundo, mails breves, cargados de valor humano. Un punto de apoyo para mantener tu
+                    atención enfocada en el bienestar que te dirige a la óptima salud.</p>
             </div>
         </div>
 
         <form id="subscribe-form" action="https://dianavaleria.ipzmarketing.com/f/sb0rhid_6d4" method="post">
-            <input type="text" name="anotheremail" style="position: absolute; left: -5000px" tabindex="-1" autocomplete="new-password" />
-            
+            <input type="text" name="anotheremail" style="position: absolute; left: -5000px" tabindex="-1"
+                autocomplete="new-password" />
+
             <div class="form-group">
                 <label for="subscriber_email">Tu mejor Email</label>
-                <input class="form-control" type="email" name="subscriber[email]" id="subscriber_email" placeholder="tu@email.com" required />
+                <input class="form-control" type="email" name="subscriber[email]" id="subscriber_email"
+                    placeholder="tu@email.com" required />
             </div>
 
             <div class="form-group">
                 <label for="subscriber_name">¿Cómo te llamas?</label>
-                <input class="form-control" type="text" name="subscriber[name]" id="subscriber_name" placeholder="Tu nombre" />
+                <input class="form-control" type="text" name="subscriber[name]" id="subscriber_name"
+                    placeholder="Tu nombre" />
             </div>
 
             <div style="margin: 15px 0 5px 0; display: flex; justify-content: center;">
@@ -191,7 +195,8 @@
             <span class="close-modal" onclick="cerrarRGPD()">&times;</span>
             <h2 style="color: var(--verde-salud); text-align: center;">Protección de Datos</h2>
             <div style="font-size: 0.95rem; line-height: 1.6; margin-top: 20px;">
-                <p>Responsable: Diana Valeria. Finalidad: Envío de newsletter. Destinatarios: Mailrelay. Tienes derecho a acceder, rectificar y suprimir tus datos.</p>
+                <p>Responsable: Diana Valeria. Finalidad: Envío de newsletter. Destinatarios: Mailrelay. Tienes derecho
+                    a acceder, rectificar y suprimir tus datos.</p>
             </div>
         </div>
     </div>
@@ -199,7 +204,7 @@
     <script>
         function abrirRGPD() { document.getElementById('modalRGPD').style.display = 'block'; }
         function cerrarRGPD() { document.getElementById('modalRGPD').style.display = 'none'; }
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == document.getElementById('modalRGPD')) cerrarRGPD();
         }
     </script>
