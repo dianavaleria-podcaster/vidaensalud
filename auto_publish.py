@@ -8,12 +8,18 @@ import html
 import time
 from datetime import datetime
 import google.generativeai as genai
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # --- Configuration ---
 RSS_URL = "https://anchor.fm/s/10f10dc44/podcast/rss"
 OUTPUT_DIR = "podcast"
 TRANSCRIPT_DIR = "transcripciones"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+TRANSCRIPTION_LIMIT = 30  # Aumentado para procesar los episodios de 30 en 30
 
 if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
 if not os.path.exists(TRANSCRIPT_DIR): os.makedirs(TRANSCRIPT_DIR)
@@ -40,7 +46,7 @@ def transcribe_with_gemini(audio_url, slug):
         print(f"Skipping transcription for {slug}: GEMINI_API_KEY not set.")
         return None
     
-    print(f"Transcribing {slug} with Gemini 1.5 Flash...")
+    print(f"Transcribing {slug} with Gemini 3 Flash...")
     genai.configure(api_key=GEMINI_API_KEY)
     
     # Download audio
@@ -52,7 +58,7 @@ def transcribe_with_gemini(audio_url, slug):
                 f.write(chunk)
         
         # Upload to Gemini
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-3-flash-preview")
         audio_file = genai.upload_file(path=audio_path)
         
         # Wait for file to process
@@ -135,17 +141,19 @@ def run():
         })
 
     # Step-by-step processing
+    transcribed_count = 0
     for i, ep in enumerate(episodes):
         slug = ep['slug']
         transcript_path = os.path.join(TRANSCRIPT_DIR, f"{slug}.txt")
         
-        # Auto-transcribe if missing and API key exists
-        if not os.path.exists(transcript_path) and GEMINI_API_KEY:
+        # Auto-transcribe if missing, API key exists, and limit not reached
+        if not os.path.exists(transcript_path) and GEMINI_API_KEY and transcribed_count < TRANSCRIPTION_LIMIT:
             text = transcribe_with_gemini(ep['audioUrl'], slug)
             if text:
                 with open(transcript_path, "w", encoding="utf-8") as f:
                     f.write(text)
                 print(f"Transcript saved for {slug}")
+                transcribed_count += 1
 
         # Check for local transcript again
         transcript_html = ""
