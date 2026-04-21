@@ -1,4 +1,3 @@
-
 import urllib.request
 import xml.etree.ElementTree as ET
 import re
@@ -207,6 +206,58 @@ template = """<!DOCTYPE html>
             font-family: var(--fuente-texto);
             text-align: center;
         }}
+        /* Transcript Accordion */
+        .transcript-accordion {{
+            margin-top: 20px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }}
+        .transcript-accordion summary {{
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: var(--fuente-texto);
+            color: var(--verde-salud);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }}
+        .transcript-accordion summary::-webkit-details-marker {{
+            display: none;
+        }}
+        .transcript-accordion summary::after {{
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }}
+        .transcript-accordion[open] summary::after {{
+            transform: rotate(180deg);
+        }}
+        .transcript-content {{
+            padding: 30px;
+            font-family: var(--fuente-texto);
+            line-height: 1.8;
+            color: #444;
+            max-height: 500px;
+            overflow-y: auto;
+            border-top: 1px solid #eee;
+        }}
+        .transcript-content p {{ margin-bottom: 15px; }}
+        .copy-btn {{
+            background: #eee;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            float: right;
+        }}
+        .copy-btn:hover {{ background: #ddd; }}
         .episode-nav {{
             display: flex;
             justify-content: space-between;
@@ -269,10 +320,7 @@ template = """<!DOCTYPE html>
 
             <section class="transcript-section">
                 <h2>Transcripción</h2>
-                <div class="transcript-placeholder">
-                    <p>La transcripción automática está disponible en la plataforma de Spotify.</p>
-                    <a href="{spotifyLink}" target="_blank" class="btn-rojo" style="display: inline-block; margin-top: 10px;">Ver transcripción en Spotify</a>
-                </div>
+                {transcript_html}
             </section>
 
             <nav class="episode-nav">
@@ -310,6 +358,30 @@ for i, ep in enumerate(episodes):
         next_ep = episodes[i-1]
         next_link = f'<a href="{next_ep["slug"]}.html">Episodio Siguiente →</a>'
 
+    # Check for local transcript
+    transcript_path = os.path.join("transcripciones", f"{ep['slug']}.txt")
+    if os.path.exists(transcript_path):
+        with open(transcript_path, "r", encoding="utf-8") as f:
+            raw_text = f.read()
+            # Basic formatting: paragraphs
+            formatted_text = "".join([f"<p>{p.strip()}</p>" for p in raw_text.split("\n") if p.strip()])
+            transcript_html = f"""
+                <details class="transcript-accordion">
+                    <summary>Leer transcripción completa</summary>
+                    <div class="transcript-content">
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); alert('Copiado');">Copiar texto</button>
+                        {formatted_text}
+                    </div>
+                </details>
+            """
+    else:
+        transcript_html = f"""
+            <div class="transcript-placeholder">
+                <p>La transcripción automática está disponible en la plataforma de Spotify.</p>
+                <a href="{ep['spotifyLink']}" target="_blank" class="btn-rojo" style="display: inline-block; margin-top: 10px;">Ver transcripción en Spotify</a>
+            </div>
+        """
+
     content = template.format(
         title=ep['title'],
         image=ep['image'],
@@ -320,7 +392,8 @@ for i, ep in enumerate(episodes):
         slug=ep['slug'],
         prev_link=prev_link,
         next_link=next_link,
-        spotifyLink=ep['spotifyLink']
+        spotifyLink=ep['spotifyLink'],
+        transcript_html=transcript_html
     )
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(content)

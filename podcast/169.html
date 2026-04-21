@@ -8,9 +8,9 @@
     
     <!-- SEO & Social Media -->
     <link rel="canonical" href="https://vidaensalud.es/podcast/169.html">
-    <meta name="description" content="Regreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el miedo y el determinismo genético se usan para convertirnos en clientes...">
+    <meta name="description" content="🔗 Notas completas y recursos: https://vidaensalud.es/podcast/169.htmlRegreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el...">
     <meta property="og:title" content="Tú también tienes un hígado: La historia de Raquel - Vida En Salud">
-    <meta property="og:description" content="Regreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el miedo y el determinismo genético se usan para convertirnos en clientes...">
+    <meta property="og:description" content="🔗 Notas completas y recursos: https://vidaensalud.es/podcast/169.htmlRegreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el...">
     <meta property="og:image" content="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/45377305/00fed6d17a22798a.jpg">
     <meta property="og:url" content="https://vidaensalud.es/podcast/169.html">
     <meta property="og:type" content="article">
@@ -92,6 +92,58 @@
             font-family: var(--fuente-texto);
             text-align: center;
         }
+        /* Transcript Accordion */
+        .transcript-accordion {
+            margin-top: 20px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .transcript-accordion summary {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: var(--fuente-texto);
+            color: var(--verde-salud);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        .transcript-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        .transcript-accordion summary::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        .transcript-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        .transcript-content {
+            padding: 30px;
+            font-family: var(--fuente-texto);
+            line-height: 1.8;
+            color: #444;
+            max-height: 500px;
+            overflow-y: auto;
+            border-top: 1px solid #eee;
+        }
+        .transcript-content p { margin-bottom: 15px; }
+        .copy-btn {
+            background: #eee;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            float: right;
+        }
+        .copy-btn:hover { background: #ddd; }
         .episode-nav {
             display: flex;
             justify-content: space-between;
@@ -149,16 +201,21 @@
             </div>
 
             <div class="episode-description">
-                <p>Regreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el miedo y el determinismo genético se usan para convertirnos en clientes cautivos del sistema.</p><p>Hablamos de la verdadera función de la depuración biológica y de por qué tu hígado es el centro de tu soberanía. <strong>Sobre el Manual de Depuración Hepática: </strong>He diseñado un protocolo técnico basado en la activación de<strong>Nrf2</strong>, la <strong>autofagia</strong>, la <strong>hormesis</strong> y la <strong>hidratación celular. </strong></p><p>Como mi difusión se basa en la honestidad de mi newsletter diaria, solo voy a maquetar este manual, a un precio justo para todos, si veo que hay un interés real por vuestra parte.</p><p><br></p><p>Capítulos y Enlaces</p><ul><li><strong>00:00</strong> – Regreso y nuevas líneas de investigación.</li><li><strong>02:23</strong> – El diagnóstico de Raquel y la estrategia del terror.</li><li><strong>04:58</strong> – La perversión de la gratuidad del sistema de &quot;salud&quot;.</li><li><strong>07:40</strong> – Un cliente de por vida, aumentando el volumen de negocio.</li><li><strong>11:45</strong> – El acné como mecanismo de limpieza biológica.</li><li><strong>18:30</strong> – La importancia vital de tus ganglios linfáticos.</li><li><strong>22:48</strong> – <a href="mailto:dianavaleria@vidaensalud.es?subject=INTERESADA" target="_blank" rel="ugc noopener noreferrer">VOTA AQUÍ: Quiero el Manual de Depuración</a></li><p><br></p></ul>
+                <p>🔗 Notas completas y recursos: <a href="https://vidaensalud.es/podcast/169.html">https://vidaensalud.es/podcast/169.html</a>Regreso al podcast para analizar el caso de Raquel, una historia que nos muestra cómo el miedo y el determinismo genético se usan para convertirnos en clientes cautivos del sistema.</p><p>Hablamos de la verdadera función de la depuración biológica y de por qué tu hígado es el centro de tu soberanía. <strong>Sobre el Manual de Depuración Hepática: </strong>He diseñado un protocolo técnico basado en la activación de<strong>Nrf2</strong>, la <strong>autofagia</strong>, la <strong>hormesis</strong> y la <strong>hidratación celular. </strong></p><p>Como mi difusión se basa en la honestidad de mi newsletter diaria, solo voy a maquetar este manual, a un precio justo para todos, si veo que hay un interés real por vuestra parte.</p><p><br></p><p>Capítulos y Enlaces</p><ul><li><strong>00:00</strong> – Regreso y nuevas líneas de investigación.</li><li><strong>02:23</strong> – El diagnóstico de Raquel y la estrategia del terror.</li><li><strong>04:58</strong> – La perversión de la gratuidad del sistema de &quot;salud&quot;.</li><li><strong>07:40</strong> – Un cliente de por vida, aumentando el volumen de negocio.</li><li><strong>11:45</strong> – El acné como mecanismo de limpieza biológica.</li><li><strong>18:30</strong> – La importancia vital de tus ganglios linfáticos.</li><li><strong>22:48</strong> – <a href="mailto:dianavaleria@vidaensalud.es?subject=INTERESADA" target="_blank" rel="ugc noopener noreferrer">VOTA AQUÍ: Quiero el Manual de Depuración</a></li></ul><p><br></p>
 
             </div>
 
             <section class="transcript-section">
                 <h2>Transcripción</h2>
-                <div class="transcript-placeholder">
-                    <p>La transcripción automática está disponible en la plataforma de Spotify.</p>
-                    <a href="https://podcasters.spotify.com/pod/show/diana-valeria4/episodes/T-tambin-tienes-un-hgado-La-historia-de-Raquel-e3hdbr9" target="_blank" class="btn-rojo" style="display: inline-block; margin-top: 10px;">Ver transcripción en Spotify</a>
-                </div>
+                
+                <details class="transcript-accordion">
+                    <summary>Leer transcripción completa</summary>
+                    <div class="transcript-content">
+                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); alert('Copiado');">Copiar texto</button>
+                        <p>Este es un ejemplo de la transcripción del episodio 169.</p><p>Aquí aparecería todo el texto que los oyentes pueden leer mientras escuchan el podcast.</p><p>Incluir el texto directamente en la web ayuda enormemente al SEO y permite que los usuarios encuentren contenido específico buscando en Google.</p><p>Diana Valeria nos habla hoy sobre la salud del hígado y la historia de Raquel.</p><p>¡Esperamos que lo disfrutes!</p>
+                    </div>
+                </details>
+            
             </section>
 
             <nav class="episode-nav">
