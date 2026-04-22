@@ -1,162 +1,277 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
 
 /* ==========================================
-   ESTILOS FUSIONADOS - DIANA VALERIA
+   SISTEMA DE DISEÑO ACCESIBLE - VIDA EN SALUD
    ========================================== */
 
 :root {
-    --rojo: #d31245;
-    /* Ajusta este valor al rojo exacto de tu marca */
+    /* Colores Principales (Alta Accesibilidad) */
+    --rojo-cta: #d31245;       /* RESERVADO EXCLUSIVAMENTE PARA SUSCRIPCIÓN */
+    --verde-salud: #1b5e20;    /* Verde oscuro para máximo contraste */
+    --texto-grafito: #1a1a1a;  /* Casi negro para legibilidad perfecta */
+    --bg-lino: #faf9f6;        /* Blanco roto para descanso visual */
+    --blanco-puro: #ffffff;
+    
+    /* Fuentes */
     --fuente-texto: 'Nunito Sans', sans-serif;
     --fuente-titulos: 'Texturina', serif;
-    --verde-salud: #2e7d32;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #f1f5f1;
+    background-color: var(--bg-lino);
+    color: var(--texto-grafito);
+    font-family: var(--fuente-texto);
+    line-height: 1.6;
+    padding: 20px;
 }
 
-h1 {
+/* Tipografía */
+h1, h2, h3 {
     font-family: var(--fuente-titulos);
-    font-weight: 700;
     color: var(--verde-salud);
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
-h2 {
-    font-family: var(--fuente-titulos);
-    font-weight: 500;
-    color: var(--rojo);
-}
-
-h3 {
-    font-family: var(--fuente-titulos);
-    font-weight: 500;
-    color: #000000;
-}
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 1.8rem; font-weight: 600; color: var(--verde-salud); } /* No más rojo en H2 */
+h3 { font-size: 1.4rem; font-weight: 500; color: var(--texto-grafito); }
 
 p {
-    font-family: var(--fuente-texto);
-    font-weight: 400;
-    font-size: 17px;
-    color: #000000;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: var(--texto-grafito);
 }
 
-/* 1. EL LOGO (Compacto para ahorrar espacio) */
-.logo {
-    max-width: 130px;
-    /* Reducido de 180px */
-    height: auto;
-    display: block;
-    margin: 10px auto;
+/* Layout Principal */
+.main-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--blanco-puro);
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* 2. CABECERA Y NAVEGACIÓN (Integrada en la caja blanca) */
+/* Cabecera y Navegación */
 .header-nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 0 10px 0;
-    background: #ffffff;
-    /* Fondo blanco para que no se vea el fondo gris al hacer scroll */
-    position: sticky;
-    top: -15px;
-    /* Compensa el padding superior del main-wrapper para quedar arriba del todo */
-    z-index: 1000;
+    margin-bottom: 30px;
 }
 
-/* Utilidad para centrado total */
-.text-center {
+/* Sección de Llamada a la Acción (CTA) */
+.cta-promotion {
+    background: #f1f5f1; /* Verde muy pálido para destacar sin agredir */
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid var(--verde-salud);
+    margin: 30px 0;
     text-align: center;
 }
 
-.centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+.cta-promotion p {
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
+/* Botón de Suscripción (EL ÚNICO ROJO) */
 .btn-rojo {
-    background-color: var(--rojo);
-    color: white !important;
-    padding: 10px 20px;
-    border-radius: 5px;
+    background-color: var(--rojo-cta);
+    color: var(--blanco-puro) !important;
+    padding: 14px 28px;
+    border-radius: 6px;
     text-decoration: none;
-    font-weight: bold;
-    font-family: var(--fuente-texto);
-    transition: transform 0.2s;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(211, 18, 69, 0.3);
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-rojo:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
     background-color: #b01036;
+    box-shadow: 0 6px 16px rgba(211, 18, 69, 0.4);
 }
 
-/* 3. EL REPRODUCTOR DE SPOTIFY (Para que se vea sí o sí) */
-.podcast-container {
+/* Elementos del Podcast */
+.player-container {
+    background: #121212;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px 0;
+}
+
+.player-container audio {
     width: 100%;
-    max-width: 800px;
-    margin: 30px auto;
+}
+
+.episode-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.episode-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 25px;
+}
+
+.episode-date {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Transcripciones (Acordeón) */
+.transcript-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+}
+
+.transcript-accordion {
+    margin-top: 20px;
+    border: 1px solid #ddd;
     border-radius: 12px;
     overflow: hidden;
-    background: #f0f0f0;
-    /* Fondo gris pálido por si tarda en cargar */
-    min-height: 352px;
+    background: var(--blanco-puro);
 }
 
-/* 4. EL PIE Y EL FORMULARIO (Fusión de ambos) */
-footer {
-    margin-top: 50px;
-    padding: 40px;
-    background-color: #f4f4f4;
-    border-top: 4px solid var(--rojo);
-    text-align: center;
+.transcript-accordion summary {
+    padding: 20px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--verde-salud);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    border-bottom: 1px solid transparent;
 }
 
-.newsletter-form {
-    max-width: 500px;
-    margin: 20px auto;
+.transcript-accordion[open] summary {
+    border-bottom: 1px solid #ddd;
 }
 
-/* Tuning anti-tablas de Mailrelay */
-.newsletter-form form table,
-.newsletter-form form tr,
-.newsletter-form form td {
-    display: block !important;
-    width: 100% !important;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
+.transcript-content {
+    padding: 30px;
+    max-height: 600px;
+    overflow-y: auto;
+    background: #fff;
 }
 
-.newsletter-form input {
-    padding: 12px;
-    width: 90%;
-    /* Ajustado para móviles */
-    max-width: 350px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.copy-btn {
+    background: #eee;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
     margin-bottom: 15px;
-    font-family: var(--fuente-texto);
+    float: right;
+    font-weight: 600;
 }
 
-/* Reutilizamos tu btn-rojo para el botón del formulario de Mailrelay */
-.newsletter-form button,
-.newsletter-form input[type="submit"] {
+.copy-btn:hover { background: #ddd; }
+
+/* Navegación entre Episodios */
+.episode-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.episode-nav a {
+    color: var(--verde-salud);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.episode-nav a:hover { text-decoration: underline; }
+
+.back-link {
     display: block;
-    margin: 0 auto;
-    /* Aquí heredará los estilos de .btn-rojo si le pones la clase */
-}
-
-/* 5. EL PODCAST (Para Vida en Salud) */
-.podcast-title {
-    font-family: var(--fuente-texto);
     text-align: center;
     margin-top: 40px;
-    color: #333;
+    color: var(--texto-grafito);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Homepage specific styles */
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.episode-card {
+    background: var(--blanco-puro);
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: var(--texto-grafito);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.episode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: var(--verde-salud);
+}
+
+.episode-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.episode-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    min-height: 2.4em;
+}
+
+/* Footer */
+footer {
+    margin-top: 80px;
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.logo-footer {
+    max-width: 80px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .main-wrapper { padding: 30px 20px; }
+    h1 { font-size: 2rem; }
+    .episode-nav { flex-direction: column; gap: 20px; align-items: center; }
 }
