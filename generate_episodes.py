@@ -140,7 +140,6 @@ template = """<!DOCTYPE html>
 
         <article class="episode-content">
             <header class="episode-header">
-                <img src="{image}" alt="{title}" class="episode-main-image">
                 <h1 class="episode-title">{title}</h1>
                 <p class="episode-date">{pubDate}</p>
             </header>
