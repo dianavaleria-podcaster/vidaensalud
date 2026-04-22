@@ -10,6 +10,9 @@ RewriteEngine On
 # Redirigir la antigua carpeta 'episodios' a 'podcast' (por si alguien guardó el link hace 5 minutos)
 RewriteRule ^episodios/(.*)$ /podcast/$1 [R=301,L]
 
+# Redirigir la suscripción a su página HTML
+Redirect 301 /suscripcion https://vidaensalud.es/suscripcion/index.html
+
 # Configuración básica para URLs amigables (opcional)
 # Si quieres que /podcast/169 funcione sin el .html, descomenta las siguientes líneas:
 # RewriteCond %{REQUEST_FILENAME} !-d
