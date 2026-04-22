@@ -164,7 +164,7 @@ template = """<!DOCTYPE html>
                     {prev_link}
                 </div>
                 <div class="catalog-link">
-                    <a href="../index.html">☰ Ver Catálogo</a>
+                    <a href="../index.html">☰ Volver al Catálogo</a>
                 </div>
                 <div class="next-ep">
                     {next_link}
