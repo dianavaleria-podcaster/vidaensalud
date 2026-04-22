@@ -22,43 +22,36 @@
 
     <div class="main-wrapper">
         <header class="header-nav">
-            <a href="suscripcion/index.html" class="btn-rojo">Suscríbete ahora</a>
+            <a href="index.html" class="logo-link">
+                <img src="logo.jpg" alt="Vida En Salud" class="logo-header">
+            </a>
+            <a href="suscripcion/index.html" class="btn-rojo">Suscríbete</a>
         </header>
 
-        <section class="centered-content" style="text-align: center; margin-bottom: 40px;">
-            <img src="logo.jpg" alt="Vida En Salud Logo" class="logo" style="max-width: 150px; margin-bottom: 20px;">
-            <h1>Podcast Vida En Salud</h1>
-            <p style="font-size: 1.4rem; color: var(--verde-salud); font-weight: 600; font-family: var(--fuente-titulos);">
+        <section class="centered-content" style="text-align: center; margin: 20px 0 40px 0;">
+            <h1>Vida En Salud</h1>
+            <p style="font-size: 1.2rem; color: var(--verde-salud); font-weight: 600; font-family: var(--fuente-titulos); margin-top: 5px;">
                 Empodérate y autogestiona tu salud
             </p>
         </section>
 
-        <section class="cta-promotion">
-            <p>¿Quieres recibir todas nuestras novedades y contenido exclusivo directamente en tu correo?</p>
-            <p style="font-size: 0.9rem; font-weight: 400; margin-bottom: 20px;">Únete a nuestra comunidad de buscadores de salud y no te pierdas ningún episodio.</p>
-            <a href="suscripcion/index.html" class="btn-rojo">Quiero suscribirme</a>
-        </section>
-
         <div id="custom-podcast-player" class="player-container">
-            <h2 style="color: #fff; text-align: center; font-size: 1.2rem; margin-bottom: 15px;">Escucha el último episodio</h2>
+            <p style="color: #fff; font-size: 0.9rem; margin-bottom: 10px; font-weight: bold;">Reproductor</p>
             <audio id="main-audio" controls style="width: 100%;">
                 Tu navegador no soporta el elemento de audio.
             </audio>
         </div>
 
         <section class="catalogo-episodios">
-            <h2 style="text-align: center; margin-top: 50px;">Explora todos los episodios</h2>
-            <div id="episodes-list" class="episodes-grid">
-                <!-- Se cargará mediante JavaScript -->
-                <p style="grid-column: 1/-1; text-align: center;">Cargando catálogo completo...</p>
-            </div>
+            <h2>Todos los episodios</h2>
+            <ul id="episodes-list" class="episodes-list">
+                <p style="text-align: center; padding: 20px;">Cargando episodios...</p>
+            </ul>
         </section>
     </div>
 
     <footer>
-        <img src="logo.jpg" alt="Vida En Salud" class="logo-footer">
         <p>&copy; 2026 Vida En Salud - Diana Valeria</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Enfocados en la accesibilidad y el empoderamiento del paciente.</p>
     </footer>
 
     <script>
@@ -70,7 +63,7 @@
 
         let allEpisodes = [];
         let currentIndex = 0;
-        const CHUNK_SIZE = 12;
+        const CHUNK_SIZE = 15;
         let globalImage = "logo.jpg";
         let isFetching = false;
 
@@ -86,7 +79,7 @@
                     let data = await response.json();
                     parseAndInitialize(data.contents);
                 } catch (err2) {
-                    listEl.innerHTML = '<p>Error al cargar el catálogo. Por favor, recarga la página.</p>';
+                    listEl.innerHTML = '<p>Error al cargar el catálogo.</p>';
                 }
             }
         }
@@ -129,18 +122,40 @@
                     thumb = itunesImage[0].getAttribute("href");
                 }
 
+                const pubDateText = item.querySelector("pubDate")?.textContent;
+                const dateStr = pubDateText ? new Date(pubDateText).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' }) : "";
+
+                const enclosure = item.querySelector("enclosure");
+                const audioLink = enclosure ? enclosure.getAttribute("url") : "";
+
                 const episodeNumber = allEpisodes.length - i;
                 const slug = episodeNumber.toString();
 
-                const card = document.createElement('a');
-                card.href = `podcast/${slug}.html`;
-                card.className = 'episode-card';
-                card.innerHTML = `
-                    <img src="${thumb}" alt="Cover">
-                    <h3>${title}</h3>
-                    <span style="font-weight: 800; color: var(--verde-salud);">Leer más →</span>
+                const li = document.createElement('li');
+                li.className = 'episode-item';
+                if (i === 0) li.classList.add('playing');
+
+                li.innerHTML = `
+                    <img src="${thumb}" alt="Cover" class="episode-thumb">
+                    <div class="episode-info">
+                        <span class="episode-title-link">${title}</span>
+                        <p class="episode-meta">
+                            ${dateStr} • 
+                            <span class="play-action">Reproducir</span> • 
+                            <a href="podcast/${slug}.html" class="read-link">Detalles y Transcripción</a>
+                        </p>
+                    </div>
                 `;
-                fragment.appendChild(card);
+
+                li.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'A') return;
+                    audioEl.src = audioLink;
+                    audioEl.play().catch(e => console.log("Autoplay blocked", e));
+                    document.querySelectorAll('.episode-item').forEach(el => el.classList.remove('playing'));
+                    li.classList.add('playing');
+                });
+
+                fragment.appendChild(li);
             }
 
             listEl.appendChild(fragment);

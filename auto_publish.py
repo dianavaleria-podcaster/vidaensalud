@@ -202,21 +202,19 @@ def run():
 </head>
 <body>
     <div class="main-wrapper">
-        <nav class="header-nav">
-            <a href="../suscripcion/index.html" class="btn-rojo">Suscríbete ahora</a>
-        </nav>
+        <header class="header-nav">
+            <a href="../index.html" class="logo-link">
+                <img src="../logo.jpg" alt="Vida En Salud" class="logo-header">
+            </a>
+            <a href="../suscripcion/index.html" class="btn-rojo">Suscríbete</a>
+        </header>
 
         <article class="episode-content">
             <header class="episode-header">
-                <img src="{image}" alt="{title}" class="episode-image">
+                <img src="{image}" alt="{title}" class="episode-main-image">
                 <h1 class="episode-title">{title}</h1>
                 <p class="episode-date">{pubDate}</p>
             </header>
-
-            <section class="cta-promotion">
-                <p>¿Te gusta este contenido? Únete a nuestra comunidad para no perderte ningún episodio.</p>
-                <a href="../suscripcion/index.html" class="btn-rojo">Quiero suscribirme</a>
-            </section>
 
             <div class="player-container">
                 <audio controls src="{audioUrl}">
@@ -242,11 +240,10 @@ def run():
                 </div>
             </nav>
 
-            <a href="../index.html" class="back-link">← Volver al catálogo de episodios</a>
+            <a href="../index.html" class="back-link">← Volver al catálogo</a>
         </article>
 
-        <footer style="margin-top: 80px; text-align: center;">
-            <img src="../logo.jpg" alt="Vida En Salud" style="max-width: 80px; margin-bottom: 20px;">
+        <footer>
             <p>&copy; 2026 Vida En Salud - Diana Valeria</p>
         </footer>
     </div>

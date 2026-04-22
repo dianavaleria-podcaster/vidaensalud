@@ -5,14 +5,11 @@
    ========================================== */
 
 :root {
-    /* Colores Principales (Alta Accesibilidad) */
-    --rojo-cta: #d31245;       /* RESERVADO EXCLUSIVAMENTE PARA SUSCRIPCIÓN */
-    --verde-salud: #1b5e20;    /* Verde oscuro para máximo contraste */
-    --texto-grafito: #1a1a1a;  /* Casi negro para legibilidad perfecta */
-    --bg-lino: #faf9f6;        /* Blanco roto para descanso visual */
+    --rojo-cta: #d31245;
+    --verde-salud: #1b5e20;
+    --texto-grafito: #1a1a1a;
+    --bg-lino: #faf9f6;
     --blanco-puro: #ffffff;
-    
-    /* Fuentes */
     --fuente-texto: 'Nunito Sans', sans-serif;
     --fuente-titulos: 'Texturina', serif;
 }
@@ -39,239 +36,193 @@ h1, h2, h3 {
     line-height: 1.2;
 }
 
-h1 { font-size: 2.5rem; font-weight: 700; }
-h2 { font-size: 1.8rem; font-weight: 600; color: var(--verde-salud); } /* No más rojo en H2 */
-h3 { font-size: 1.4rem; font-weight: 500; color: var(--texto-grafito); }
+h1 { font-size: 2.2rem; font-weight: 700; text-align: center; }
+h2 { font-size: 1.6rem; font-weight: 600; color: var(--verde-salud); }
+h3 { font-size: 1.2rem; font-weight: 500; color: var(--texto-grafito); }
 
-p {
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
-    color: var(--texto-grafito);
-}
+p { font-size: 1.05rem; margin-bottom: 1rem; color: var(--texto-grafito); }
 
 /* Layout Principal */
 .main-wrapper {
     max-width: 900px;
     margin: 0 auto;
     background: var(--blanco-puro);
-    padding: 40px 60px;
+    padding: 20px 40px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Cabecera y Navegación */
+/* Cabecera */
 .header-nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: -20px;
+    background: var(--blanco-puro);
+    z-index: 1000;
 }
 
-/* Sección de Llamada a la Acción (CTA) */
-.cta-promotion {
-    background: #f1f5f1; /* Verde muy pálido para destacar sin agredir */
-    padding: 25px;
-    border-radius: 10px;
-    border-left: 5px solid var(--verde-salud);
-    margin: 30px 0;
-    text-align: center;
+.logo-link {
+    text-decoration: none;
+    display: block;
 }
 
-.cta-promotion p {
-    font-weight: 600;
-    margin-bottom: 15px;
+.logo-header {
+    max-width: 60px;
+    height: auto;
 }
 
-/* Botón de Suscripción (EL ÚNICO ROJO) */
+/* Botón de Suscripción Discreto */
 .btn-rojo {
     background-color: var(--rojo-cta);
     color: var(--blanco-puro) !important;
-    padding: 14px 28px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border-radius: 4px;
     text-decoration: none;
-    font-weight: 800;
-    font-size: 1.1rem;
-    display: inline-block;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(211, 18, 69, 0.3);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
     border: none;
     cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .btn-rojo:hover {
-    transform: translateY(-2px);
     background-color: #b01036;
-    box-shadow: 0 6px 16px rgba(211, 18, 69, 0.4);
+    transform: scale(1.02);
 }
 
-/* Elementos del Podcast */
+/* Reproductor */
 .player-container {
     background: #121212;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .player-container audio {
     width: 100%;
 }
 
+/* Lista de Episodios (Compacta) */
+.episodes-list {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.episode-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.episode-item:hover {
+    background: #f9f9f9;
+}
+
+.episode-item.playing {
+    background: #f1f5f1;
+    border-left: 4px solid var(--verde-salud);
+}
+
+.episode-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.episode-info {
+    flex: 1;
+}
+
+.episode-title-link {
+    font-weight: 700;
+    color: var(--texto-grafito);
+    text-decoration: none;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.episode-meta {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.play-action {
+    color: var(--verde-salud);
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.read-link {
+    color: var(--verde-salud);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+.read-link:hover { text-decoration: underline; }
+
+/* Página de Episodio */
 .episode-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin: 30px 0;
 }
 
-.episode-image {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+.episode-main-image {
+    max-width: 180px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
-.episode-date {
-    color: #666;
-    font-size: 1rem;
-}
-
-/* Transcripciones (Acordeón) */
+/* Transcripciones */
 .transcript-section {
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 2px solid #eee;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
 }
 
 .transcript-accordion {
-    margin-top: 20px;
     border: 1px solid #ddd;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    background: var(--blanco-puro);
 }
 
 .transcript-accordion summary {
-    padding: 20px;
+    padding: 15px;
     background: #f8f9fa;
     cursor: pointer;
     font-weight: bold;
     color: var(--verde-salud);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    border-bottom: 1px solid transparent;
-}
-
-.transcript-accordion[open] summary {
-    border-bottom: 1px solid #ddd;
 }
 
 .transcript-content {
-    padding: 30px;
-    max-height: 600px;
+    padding: 25px;
+    max-height: 500px;
     overflow-y: auto;
-    background: #fff;
-}
-
-.copy-btn {
-    background: #eee;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    margin-bottom: 15px;
-    float: right;
-    font-weight: 600;
-}
-
-.copy-btn:hover { background: #ddd; }
-
-/* Navegación entre Episodios */
-.episode-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 1px solid #eee;
-}
-
-.episode-nav a {
-    color: var(--verde-salud);
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.episode-nav a:hover { text-decoration: underline; }
-
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 40px;
-    color: var(--texto-grafito);
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-/* Homepage specific styles */
-.episodes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.episode-card {
-    background: var(--blanco-puro);
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    text-decoration: none;
-    color: var(--texto-grafito);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.episode-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    border-color: var(--verde-salud);
-}
-
-.episode-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.episode-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    min-height: 2.4em;
 }
 
 /* Footer */
 footer {
-    margin-top: 80px;
-    padding: 60px 20px;
-    background-color: #f4f4f4;
-    border-top: 1px solid #ddd;
+    margin-top: 50px;
+    padding: 40px 20px;
     text-align: center;
-}
-
-.logo-footer {
-    max-width: 80px;
-    margin-bottom: 20px;
+    border-top: 1px solid #eee;
 }
 
 @media (max-width: 768px) {
-    .main-wrapper { padding: 30px 20px; }
-    h1 { font-size: 2rem; }
-    .episode-nav { flex-direction: column; gap: 20px; align-items: center; }
+    .main-wrapper { padding: 15px 20px; }
+    .episode-item { flex-wrap: wrap; }
 }
