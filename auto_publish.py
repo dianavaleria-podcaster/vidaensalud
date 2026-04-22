@@ -19,7 +19,7 @@ RSS_URL = "https://anchor.fm/s/10f10dc44/podcast/rss"
 OUTPUT_DIR = "podcast"
 TRANSCRIPT_DIR = "transcripciones"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-TRANSCRIPTION_LIMIT = 30  # Aumentado para procesar los episodios de 30 en 30
+TRANSCRIPTION_LIMIT = 50  # Aumentado para terminar los últimos 42 episodios de una vez
 
 if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
 if not os.path.exists(TRANSCRIPT_DIR): os.makedirs(TRANSCRIPT_DIR)
