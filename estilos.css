@@ -58,7 +58,7 @@ p { font-size: 1.05rem; margin-bottom: 1rem; color: var(--texto-grafito); }
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
     position: sticky;
     top: -20px;
@@ -72,27 +72,32 @@ p { font-size: 1.05rem; margin-bottom: 1rem; color: var(--texto-grafito); }
 }
 
 .logo-header {
-    max-width: 140px; /* Aumentado para dar más presencia al logo */
+    max-width: 140px;
     height: auto;
 }
 
-/* Botón de Suscripción Discreto */
+/* Botón de Suscripción con Información */
 .btn-rojo {
     background-color: var(--rojo-cta);
     color: var(--blanco-puro) !important;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 6px;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
+    font-weight: 800;
+    font-size: 0.85rem;
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
+    text-align: center;
+    line-height: 1.2;
+    display: inline-block;
+    max-width: 300px;
 }
 
 .btn-rojo:hover {
     background-color: #b01036;
-    transform: scale(1.02);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(211, 18, 69, 0.2);
 }
 
 /* Reproductor */
@@ -214,6 +219,34 @@ p { font-size: 1.05rem; margin-bottom: 1rem; color: var(--texto-grafito); }
     overflow-y: auto;
 }
 
+/* Navegación entre Episodios (Equilibrada) */
+.episode-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.episode-nav > div {
+    flex: 1;
+}
+
+.episode-nav .prev-ep { text-align: left; }
+.episode-nav .next-ep { text-align: right; }
+.episode-nav .catalog-link { text-align: center; }
+
+.episode-nav a {
+    color: var(--verde-salud);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.episode-nav a:hover { text-decoration: underline; }
+
 /* Footer */
 footer {
     margin-top: 50px;
@@ -224,5 +257,6 @@ footer {
 
 @media (max-width: 768px) {
     .main-wrapper { padding: 15px 20px; }
-    .episode-item { flex-wrap: wrap; }
+    .episode-nav { flex-direction: column; gap: 15px; }
+    .episode-nav > div { text-align: center !important; }
 }

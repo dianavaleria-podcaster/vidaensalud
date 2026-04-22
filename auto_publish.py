@@ -206,7 +206,7 @@ def run():
             <a href="../index.html" class="logo-link">
                 <img src="../logo.jpg" alt="Vida En Salud" class="logo-header">
             </a>
-            <a href="../suscripcion/index.html" class="btn-rojo">Suscríbete</a>
+            <a href="../suscripcion/index.html" class="btn-rojo">Suscríbete a la Newsletter y obtén ofertas especiales</a>
         </header>
 
         <article class="episode-content">
@@ -234,12 +234,13 @@ def run():
                 <div class="prev-ep">
                     {prev_link}
                 </div>
+                <div class="catalog-link">
+                    <a href="../index.html">☰ Ver Catálogo</a>
+                </div>
                 <div class="next-ep">
                     {next_link}
                 </div>
             </nav>
-
-            <a href="../index.html" class="back-link">← Volver al catálogo</a>
         </article>
 
         <footer>
