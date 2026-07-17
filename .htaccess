@@ -13,6 +13,10 @@ RewriteRule ^episodios/(.*)$ /podcast/$1 [R=301,L]
 # Redirigir la suscripción a su página HTML
 Redirect 301 /suscripcion https://vidaensalud.es/suscripcion/index.html
 
+# Redirigir la antigua carpeta del libro a la nueva (Geometría de la vida)
+Redirect 301 /libro/dinamica-y-orden-vida /libro/geometria-de-la-vida
+Redirect 301 /vidaensalud.es/libro/dinamica-y-orden-vida /vidaensalud.es/libro/geometria-de-la-vida
+
 # Configuración básica para URLs amigables (opcional)
 # Si quieres que /podcast/169 funcione sin el .html, descomenta las siguientes líneas:
 # RewriteCond %{REQUEST_FILENAME} !-d
