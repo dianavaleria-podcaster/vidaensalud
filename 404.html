@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+    <script>
+        // Obtener la ruta de la URL solicitada
+        var path = window.location.pathname;
+
+        // Comprobar si corresponde a alguna de las rutas antiguas
+        if (path.includes('dinamica-y-orden-vida')) {
+            // Reemplazar la carpeta vieja por la nueva
+            var newPath = path.replace('dinamica-y-orden-vida', 'geometria-de-la-vida');
+            window.location.replace(newPath);
+        } else if (path.includes('tratado/volumen-1/confirmacion.html')) {
+            // Redirigir la confirmación vieja al nuevo umbral
+            var target = path.includes('/vidaensalud.es/') 
+                ? "/vidaensalud.es/libro/geometria-de-la-vida/entrega-1/umbral.html"
+                : "/libro/geometria-de-la-vida/entrega-1/umbral.html";
+            window.location.replace(target);
+        } else {
+            // Para cualquier otro error 404, redirigir a la página principal
+            var home = path.includes('/vidaensalud.es/') ? "/vidaensalud.es/index.html" : "/index.html";
+            window.location.replace(home);
+        }
+    </script>
+</head>
+<body>
+    <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">Redireccionando...</p>
+</body>
+</html>
