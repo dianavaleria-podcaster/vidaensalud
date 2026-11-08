@@ -1,9 +1,7 @@
-name: Auto Publish Podcast
+name: Auto Publish Podcast (Migrated to dianavaleria.es)
 
 on:
-  schedule:
-    - cron: '0 * * * *' # Every hour
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch: # Manual trigger only (migrated to dianavaleria repo)
 
 jobs:
   publish:
@@ -14,25 +12,3 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Run Auto Publish
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python auto_publish.py
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m 'Auto-publish: New episodes and transcripts' && git push)

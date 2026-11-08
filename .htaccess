@@ -1,32 +1,20 @@
-# 301 Redirects - Vida En Salud
+# 301 Redirects - Vida En Salud -> dianavaleria.es/podcast
 RewriteEngine On
 
-# Ejemplo de redirección de una URL antigua a la nueva estructura numérica
-# Redirect 301 /nombre-del-episodio-antiguo https://vidaensalud.es/podcast/169.html
-
-# Redirigir el antiguo feed si fuera necesario
-# Redirect 301 /feed/podcast https://anchor.fm/s/10f10dc44/podcast/rss
-
-# Redirigir la antigua carpeta 'episodios' a 'podcast' (por si alguien guardó el link hace 5 minutos)
-RewriteRule ^episodios/(.*)$ /podcast/$1 [R=301,L]
-
-# Redirigir la suscripción a su página HTML
-Redirect 301 /suscripcion https://vidaensalud.es/suscripcion/index.html
-
-# Redirigir la antigua carpeta del libro a la nueva (Geometría de la vida)
-Redirect 301 /libro/dinamica-y-orden-vida /libro/geometria-de-la-vida
-Redirect 301 /vidaensalud.es/libro/dinamica-y-orden-vida /vidaensalud.es/libro/geometria-de-la-vida
-
-# Redirigir la antigua página de confirmación de Stripe a la nueva ubicación del libro
+# Redirigir la antigua carpeta del libro y confirmación de Stripe a dianavaleria.es/libro
 Redirect 301 /tratado/volumen-1/confirmacion.html https://dianavaleria.es/libro/geometria-de-la-vida/entrega-1/umbral.html
 Redirect 301 /vidaensalud.es/tratado/volumen-1/confirmacion.html https://dianavaleria.es/libro/geometria-de-la-vida/entrega-1/umbral.html
+RewriteRule ^(vidaensalud\.es/)?libro/dinamica-y-orden-vida(.*)$ https://dianavaleria.es/libro/geometria-de-la-vida$2 [R=301,L]
+RewriteRule ^(vidaensalud\.es/)?libro/(.*)$ https://dianavaleria.es/libro/$2 [R=301,L]
 
-# Redirigir la antigua página de venta del libro a la nueva ubicación en la web personal dianavaleria.es
-Redirect 301 /libro/geometria-de-la-vida/entrega-1/umbral.html https://dianavaleria.es/libro/geometria-de-la-vida/entrega-1/umbral.html
-Redirect 301 /vidaensalud.es/libro/geometria-de-la-vida/entrega-1/umbral.html https://dianavaleria.es/libro/geometria-de-la-vida/entrega-1/umbral.html
+# Redirigir la antigua carpeta 'episodios' y 'podcast' a dianavaleria.es/podcast/
+RewriteRule ^(vidaensalud\.es/)?episodios/(.*)$ https://dianavaleria.es/podcast/$2 [R=301,L]
+RewriteRule ^(vidaensalud\.es/)?podcast/(.*)$ https://dianavaleria.es/podcast/$2 [R=301,L]
 
-# Configuración básica para URLs amigables (opcional)
-# Si quieres que /podcast/169 funcione sin el .html, descomenta las siguientes líneas:
-# RewriteCond %{REQUEST_FILENAME} !-d
-# RewriteCond %{REQUEST_FILENAME}\.html -f
-# RewriteRule ^podcast/([0-9]+)$ /podcast/$1.html [L]
+# Redirigir suscripción, confirmación y oops a dianavaleria.es/podcast/
+Redirect 301 /suscripcion https://dianavaleria.es/podcast/suscripcion/index.html
+Redirect 301 /confirmacion https://dianavaleria.es/podcast/confirmacion/index.html
+Redirect 301 /oops https://dianavaleria.es/podcast/oops/index.html
+
+# Redirigir la raíz y cualquier otra ruta del podcast a dianavaleria.es/podcast/
+RewriteRule ^(vidaensalud\.es/)?(.*)$ https://dianavaleria.es/podcast/$2 [R=301,L]
