@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redireccionando...</title>
+    <link rel="canonical" href="https://dianavaleria.es/podcast/">
     <script>
         var path = window.location.pathname.replace(/^\/vidaensalud\.es/, '');
 
@@ -19,11 +20,14 @@
         } else if (path.startsWith('/episodios/')) {
             window.location.replace("https://dianavaleria.es/podcast/" + path.replace(/^\/episodios\//, ''));
         } else if (path === '/' || path === '/index.html') {
-            window.location.replace("https://dianavaleria.es/podcast/index.html");
+            window.location.replace("https://dianavaleria.es/podcast/");
         } else {
             window.location.replace("https://dianavaleria.es/podcast" + (path.startsWith('/') ? path : '/' + path));
         }
     </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://dianavaleria.es/podcast/">
+    </noscript>
 </head>
 <body>
     <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">

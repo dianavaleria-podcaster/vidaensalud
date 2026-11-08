@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vidaensalud.es/sitemap.xml
+Sitemap: https://dianavaleria.es/sitemap.xml

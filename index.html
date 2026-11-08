@@ -1,179 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vida En Salud - Podcast sobre Autogestión de la Salud</title>
-    <link rel="stylesheet" href="estilos.css">
-    
-    <!-- SEO & Social Media -->
-    <link rel="canonical" href="https://vidaensalud.es/index.html">
-    <meta name="description" content="Podcast Vida En Salud - Empodérate y autogestiona tu salud con Diana Valeria. Información profesional sobre salud integral.">
-    <meta property="og:title" content="Vida En Salud - Podcast">
-    <meta property="og:description" content="Empodérate y autogestiona tu salud con nuestro podcast educativo y profesional.">
-    <meta property="og:image" content="https://vidaensalud.es/logo.jpg">
-    <meta property="og:url" content="https://vidaensalud.es/index.html">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-</head>
-
-<body>
-
-    <div class="main-wrapper">
-        <header class="header-nav">
-            <a href="index.html" class="logo-link">
-                <img src="logo.jpg" alt="Vida En Salud" class="logo-header">
-            </a>
-            <a href="suscripcion/index.html" class="btn-rojo">Suscríbete a la Newsletter</a>
-        </header>
-
-        <section class="centered-content" style="text-align: center; margin: 20px 0 40px 0;">
-            <h1>Vida En Salud</h1>
-            <p style="font-size: 1.2rem; color: var(--verde-salud); font-weight: 600; font-family: var(--fuente-titulos); margin-top: 5px;">
-                Empodérate y autogestiona tu salud
-            </p>
-        </section>
-
-        <div id="custom-podcast-player" class="player-container">
-            <p style="color: #fff; font-size: 0.9rem; margin-bottom: 10px; font-weight: bold;">Reproductor</p>
-            <audio id="main-audio" controls style="width: 100%;">
-                Tu navegador no soporta el elemento de audio.
-            </audio>
-        </div>
-
-        <section class="catalogo-episodios">
-            <h2>Todos los episodios</h2>
-            <ul id="episodes-list" class="episodes-list">
-                <p style="text-align: center; padding: 20px;">Cargando episodios...</p>
-            </ul>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Vida En Salud - Diana Valeria</p>
-    </footer>
-
+    <title>Redireccionando a Vida En Salud Podcast...</title>
+    <link rel="canonical" href="https://dianavaleria.es/podcast/">
+    <meta http-equiv="refresh" content="0; url=https://dianavaleria.es/podcast/">
     <script>
-        const rssUrl = "https://anchor.fm/s/10f10dc44/podcast/rss";
-        const backupProxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-
-        const audioEl = document.getElementById('main-audio');
-        const listEl = document.getElementById('episodes-list');
-
-        let allEpisodes = [];
-        let currentIndex = 0;
-        const CHUNK_SIZE = 15;
-        let globalImage = "logo.jpg";
-        let isFetching = false;
-
-        async function fetchRSS() {
-            try {
-                let response = await fetch(rssUrl);
-                if (!response.ok) throw new Error('Direct fetch failed');
-                const xmlText = await response.text();
-                parseAndInitialize(xmlText);
-            } catch (err) {
-                try {
-                    let response = await fetch(backupProxyUrl);
-                    let data = await response.json();
-                    parseAndInitialize(data.contents);
-                } catch (err2) {
-                    listEl.innerHTML = '<p>Error al cargar el catálogo.</p>';
-                }
-            }
-        }
-
-        function parseAndInitialize(xmlString) {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            const items = xmlDoc.querySelectorAll("item");
-
-            if (items.length > 0) {
-                const globalImageEl = xmlDoc.querySelector("channel > image > url");
-                if (globalImageEl) globalImage = globalImageEl.textContent;
-
-                allEpisodes = Array.from(items);
-                listEl.innerHTML = '';
-                renderNextChunk();
-
-                const firstEnclosure = allEpisodes[0].querySelector("enclosure");
-                if (firstEnclosure) {
-                    audioEl.src = firstEnclosure.getAttribute("url");
-                }
-
-                window.addEventListener('scroll', handleScroll);
-            }
-        }
-
-        function renderNextChunk() {
-            if (currentIndex >= allEpisodes.length) return;
-
-            const endIndex = Math.min(currentIndex + CHUNK_SIZE, allEpisodes.length);
-            const fragment = document.createDocumentFragment();
-
-            for (let i = currentIndex; i < endIndex; i++) {
-                const item = allEpisodes[i];
-                const title = item.querySelector("title")?.textContent || "Episodio sin título";
-                
-                let thumb = globalImage;
-                const itunesImage = item.getElementsByTagNameNS("*", "image");
-                if (itunesImage.length > 0 && itunesImage[0].getAttribute("href")) {
-                    thumb = itunesImage[0].getAttribute("href");
-                }
-
-                const pubDateText = item.querySelector("pubDate")?.textContent;
-                const dateStr = pubDateText ? new Date(pubDateText).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' }) : "";
-
-                const enclosure = item.querySelector("enclosure");
-                const audioLink = enclosure ? enclosure.getAttribute("url") : "";
-
-                const episodeNumber = allEpisodes.length - i;
-                const slug = episodeNumber.toString();
-
-                const li = document.createElement('li');
-                li.className = 'episode-item';
-                if (i === 0) li.classList.add('playing');
-
-                li.innerHTML = `
-                    <img src="${thumb}" alt="Cover" class="episode-thumb">
-                    <div class="episode-info">
-                        <span class="episode-title-link">${title}</span>
-                        <p class="episode-meta">
-                            ${dateStr} • 
-                            <span class="play-action">Reproducir</span> • 
-                            <a href="podcast/${slug}.html" class="read-link">Detalles y Transcripción</a>
-                        </p>
-                    </div>
-                `;
-
-                li.addEventListener('click', (e) => {
-                    if (e.target.tagName === 'A') return;
-                    audioEl.src = audioLink;
-                    audioEl.play().catch(e => console.log("Autoplay blocked", e));
-                    document.querySelectorAll('.episode-item').forEach(el => el.classList.remove('playing'));
-                    li.classList.add('playing');
-                });
-
-                fragment.appendChild(li);
-            }
-
-            listEl.appendChild(fragment);
-            currentIndex = endIndex;
-            isFetching = false;
-        }
-
-        function handleScroll() {
-            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-            if (scrollTop + clientHeight >= scrollHeight - 400) {
-                if (!isFetching && currentIndex < allEpisodes.length) {
-                    isFetching = true;
-                    setTimeout(() => renderNextChunk(), 100);
-                }
-            }
-        }
-
-        fetchRSS();
+        window.location.replace("https://dianavaleria.es/podcast/");
     </script>
+</head>
+<body>
+    <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+        Redireccionando a <a href="https://dianavaleria.es/podcast/">dianavaleria.es/podcast</a>...
+    </p>
 </body>
 </html>
